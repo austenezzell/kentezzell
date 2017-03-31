@@ -1,0 +1,124 @@
+@include font();
+
+body {
+  margin: 0;
+  color: $color-black;
+  @include regular-font();
+  line-height: $base-line-height;
+  background: #000;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, pre, table, blockquote {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+}
+
+p {}
+
+ul, ol {}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p > a {
+  text-decoration: underline;
+}
+
+strong, b {
+  font-weight: 600;
+}
+
+i, em {}
+
+hr {}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.zero-pad {
+  line-height: 0;
+  .col {
+    padding: 0!important;
+  }
+}
+.page-container {
+  position: relative;
+  z-index: 1;
+}
+a.back-arrow {
+  position: absolute;
+  top: 32px;
+  left: 24px;
+  animation-duration: 1s;
+  animation-name: rightAndIn;
+  animation-delay: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  display: block;
+  z-index: 9999;
+
+  svg {
+    width: 32px;
+    height: auto;
+    opacity: 1;
+    pointer-events: none;
+    @include breakpoint(md) {
+      width: 40px;
+    }
+  }
+  &:hover {
+    svg {
+      opacity: .5;
+    }
+  }
+}
+
+
+.page-transiton {
+  .list-container, .portfolio-image-container img, .featured-section, .intro .container, .contact-module, .bio-page .container, .portfolio .container {
+    opacity: 0;
+  }
+}
+
+@keyframes showTitle {
+  from {
+    opacity: 0;
+    transform: perspective(500px) translate3d(0px,0px,0px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(500px) translate3d(24px,0px,0px);
+  }
+}
+
+@keyframes upAndIn {
+  from {
+    opacity: 0;
+    transform: perspective(500px) translate3d(0px,24px,0px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(500px) translate3d(0px,0px,0px);
+  }
+}
+
+@keyframes rightAndIn {
+  from {
+    opacity: 0;
+    transform: perspective(500px) translate3d(-16px,0px,0px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(500px) translate3d(0px,0px,0px);
+  }
+}

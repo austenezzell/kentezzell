@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+// Dependencies
+@import 'config';
+@import 'lib/root';
+@import 'lib/mixins';
+@import 'lib/functions';
+
+// Modules
+@import "modules/type";
+@import "modules/grid";
+@import "modules/position";
+@import "modules/text";
+@import "modules/display";
+@import "modules/float";
+@import "modules/viewport";
+@import "modules/border";
+@import "modules/spacing";
+@import "modules/bg";
+@import "modules/list";
+@import "modules/media";
+@import "modules/clearfix";
+@import "modules/helpers";
+
+// Static module includes
+@mixin uno-core {
+  @include uno-root;
+  @include uno-type;
+  @include uno-clearfix;
+  @include uno-helpers;
+  @include uno-bg;
+  @include uno-list;
+  @include uno-media;
+  @include uno-grid;
+}
+
+// Responsive module includes
+@mixin uno-responsive($suffix) {
+  @include uno-flex($suffix);
+  @include uno-position($suffix);
+  @include uno-text($suffix);
+  @include uno-display($suffix);
+  @include uno-float($suffix);
+  @include uno-viewport-height($suffix);
+  @include uno-border($suffix);
+  @include uno-spacing('padding', $base-spacing, $spacing-multiplier, $suffix);
+  @include uno-spacing('margin', $base-spacing, $spacing-multiplier, $suffix);
+}
+// Magic
+@each $breakpoint in $breakpoints {
+  @include breakpoint($breakpoint){
+    @if $breakpoint != 'xs' {
+      $responsiveSuffix: '#{\@}#{$breakpoint}';
+      @include uno-responsive($responsiveSuffix);
+    }
+    @else {
+      // Static
+      @include uno-core;
+      // Responsive
+      $responsiveSuffix: '';
+      @include uno-responsive($responsiveSuffix);
+    }
+  }
+}

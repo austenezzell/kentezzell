@@ -1,0 +1,6 @@
+@mixin uno-border($sfx) {
+  .border-top#{$sfx} { border-top: 1px solid #eee; }
+  .border-right#{$sfx} { border-right: 1px solid #eee; }
+  .border-bottom#{$sfx} { border-bottom: 1px solid #eee; }
+  .border-left#{$sfx} { border-left: 1px solid #eee; }
+}

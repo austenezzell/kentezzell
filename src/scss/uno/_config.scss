@@ -1,0 +1,38 @@
+// Font size
+$base: 16;
+$base-font-size: $base * 1px;
+$base-font-scale: 1.5;
+$base-spacing: 1rem;
+
+// Line-height
+$base-line-height: 1.5;
+$headline-line-height: 1.125;
+$paragraph-line-height: $base-line-height;
+
+// Grid settings
+$grid-breakpoints: (
+  xs: 0,
+  sm: 32rem, // 512px @ 16
+  md: 48rem, // 768px @ 16
+  lg: 64rem, // 1024px @ 16
+  xl: 80rem, // 1280px @ 16
+) !default;
+
+$grid-columns: 8;
+$grid-max-width: 100%;
+$grid-gutter-width: ($base-spacing);
+
+// Spacing
+$spacing-multiplier: 4;
+$spacing-sides: (
+  default: default, // Don't change!
+  horizontal: horizontal, // Don't change!
+  vertical: vertical, // Don't change!
+  t: top,
+  b: bottom,
+  l: left,
+  r: right,
+);
+
+// Maps for looping
+$breakpoints: map_keys($grid-breakpoints) !default;

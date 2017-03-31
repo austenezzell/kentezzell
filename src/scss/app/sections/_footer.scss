@@ -1,0 +1,65 @@
+/*
+  Footer styles
+*/
+.homepage {
+  .contact-module{
+    background-image: url('/img/wood.jpg');
+    // background: blue;
+    // mix-blend-mode: screen;
+  }
+}
+.contact-module {
+  z-index: 30;
+  position: relative;
+  text-align: center;
+  transition: opacity .4s;
+  background-size: cover;
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    color: white;
+    margin: 0;
+    list-style: none;
+    line-height: 1.2;
+    span {
+      display: block;
+    }
+    a {
+      color: white;
+      display: block;
+    }
+  }
+}
+
+.transition-wipe {
+  position: fixed;
+  bottom:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-100%);
+  z-index: 0;
+  opacity: 0;
+}
+
+.page-transiton {
+  .transition-wipe {
+    animation-duration: .4s;
+    animation-name: wipe;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes wipe {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

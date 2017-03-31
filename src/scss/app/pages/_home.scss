@@ -1,0 +1,75 @@
+/*
+  Place styles specific to the homepage in here.
+*/
+.homepage {
+  background: $color-lite;
+  transition: background .4s ease-in;
+}
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  margin: 0!important;
+  h1, h2, a {
+    color:white;
+  }
+  .container {
+    transition: opacity .4s;
+  }
+}
+.featured-work {
+  padding-top: 100vh;
+}
+
+.featured-section {
+  position: relative;
+  transition: opacity .4s;
+  &.stay {
+    opacity: 1!important;
+  }
+  .module {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    &.fixed {
+      position: fixed;
+    }
+    .row {
+      height: 90vh;
+      margin-top: 5vh;
+      overflow: hidden;
+    }
+  }
+  img {
+    transition: transform .1s ease-in;
+  }
+  a.container {
+    img {
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+
+    }
+    .title {
+      position: fixed;
+      // mix-blend-mode: difference;
+      top: 0px;
+      left: 0px;
+      margin-top: -30px;
+      opacity: 0;
+      color: white;
+      pointer-events: none;
+      height: 60px;
+      &.active-hover {
+        animation-duration: .4s;
+        animation-name: showTitle;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}

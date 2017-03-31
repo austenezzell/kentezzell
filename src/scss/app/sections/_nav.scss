@@ -1,0 +1,104 @@
+/*
+  Nav styles
+*/
+
+.portfolio-nav-on {
+  .portfolio-nav {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.primary-nav.nav-on {
+  transform: translateX(0px);
+}
+
+.primary-nav {
+  position:fixed;
+  right: 0px;
+  top: 0;
+  overflow: hidden;
+  z-index: 999;
+  height: 100%;
+  width: 80px;
+  transform: translateX(70px);
+  transition: transform .4s;
+  ul {
+    margin: 0;
+    padding: 0;
+    transform: rotate(90deg);
+    width: 190px;
+    position: absolute;
+    top: 50%;
+    height: 40px;
+    margin-top: -20px;
+    right: 0;
+    margin-right: -45px;
+    @include breakpoint(xl) {
+      width: 230px;
+      margin-right: -58px;
+    }
+    li {
+      margin-right: 32px;
+      display:inline-block;
+      float: left;
+      list-style: none;
+      a {
+        color: white;
+      }
+    }
+  }
+}
+
+
+.portfolio-nav {
+  background: white;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: all .4s;
+  visibility: hidden;
+  opacity: 0;
+  .portfolio-image-container {
+    .row {
+      height: 90vh;
+      margin-top: 5vh;
+    }
+    img {
+      transition: filter 1.5s;
+      filter: blur(100px);
+    }
+    &.active img {
+      filter: blur(0px);
+      opacity: 1!important;
+    }
+  }
+  .list-cointainer, .portfolio-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity .4s;
+  }
+  .list-container {
+    z-index: 9999;
+    position: relative;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      text-align: center;
+      color: white;
+      a {
+        color: white;
+        mix-blend-mode: difference;
+      }
+    }
+  }
+}

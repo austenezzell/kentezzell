@@ -1,0 +1,25 @@
+$cssColors: (
+  dark: $color-black,
+  lite: $color-lite,
+  white: #fff,
+  primary: $color-primary,
+  secondary:  $color-secondary,
+  success: #0C0,
+  error: #C00,
+  warning: #CC0,
+) !default;
+
+@function cssColor($color) {
+  @return map_get($cssColors, $color);
+}
+
+// Text and background colors
+@each $colorName, $colorValue in $cssColors {
+  .bg-#{$colorName} {
+    background-color: $colorValue;
+  }
+
+  .color-#{$colorName} {
+    color: $colorValue;
+  }
+}

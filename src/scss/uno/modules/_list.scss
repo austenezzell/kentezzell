@@ -1,0 +1,13 @@
+@mixin uno-list {
+  .list-reset {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .list-inline {
+    > li {
+      display: inline-block;
+    }
+  }
+}
