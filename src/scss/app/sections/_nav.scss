@@ -33,7 +33,10 @@
     height: 40px;
     margin-top: -20px;
     right: 0;
-    margin-right: -45px;
+    margin-right: -64px;
+    @include breakpoint(md) {
+      margin-right: -45px;
+    }
     @include breakpoint(xl) {
       width: 230px;
       margin-right: -58px;
