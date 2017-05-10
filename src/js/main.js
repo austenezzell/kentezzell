@@ -17,6 +17,10 @@ require('smoothscroll-polyfill').polyfill();
   let projectNavItem = document.querySelectorAll('.project-nav-item');
   let portfolioLink = document.querySelector('.portfolio-link');
   let portfolioNav = document.querySelector('.portfolio-nav');
+  let galleryItem = document.querySelectorAll('.gallery-item');
+  let galleryContainer = document.querySelector('.gallery');
+  let galleryModule = document.querySelector('.gallery-module');
+  let galleryMode = 'off';
 
   if (portfolioLink){
       portfolioLink.addEventListener('click', (e) => {
@@ -110,7 +114,6 @@ require('smoothscroll-polyfill').polyfill();
       // home -> portfolio page transition
       projectLink[i].addEventListener('click', (e) => {
         e.preventDefault();
-        console.log(projectLink[i]);
         let targetContainer = e.target.parentNode.parentNode;
         let href = e.target.getAttribute('href');
         let containerColor = targetContainer.parentNode.getAttribute('data-bgcolor');
@@ -179,28 +182,60 @@ require('smoothscroll-polyfill').polyfill();
     });
   }
 
+  let hideGalleryView = () => {
+    document.querySelector('body').classList.remove('activeImgDtl');
+    galleryContainer.classList.remove('on');
+    galleryMode = 'off';
+  }
 
-  let blurOut = (el) => {
-    if(window.scrollY > 850){
-      el.style.opacity = 0;
-      el.style.filter = `blur(49px)`;
+  let scrollThings = (el) => {
+    if (el){
+      if(window.scrollY > 850){
+        el.style.opacity = 0;
+        el.style.filter = `blur(49px)`;
+      }
     }
     window.onscroll = (e) => {
-      el.style.filter = `blur(${Math.floor(blur)}px)`;
-      el.style.opacity = `${opacity}`;
-      let blur = window.scrollY / 10;
-      let opacity = (100 - (blur)) / 100;
-      // console.log(el);
-      if (blur < 50){
+      if(el){
         el.style.filter = `blur(${Math.floor(blur)}px)`;
-      }
-      if (opacity > 0) {
-        if (opacity < .1) {
-            el.style.opacity = 0;
-        } else {
-            el.style.opacity = `${opacity}`;
+        el.style.opacity = `${opacity}`;
+        let blur = window.scrollY / 10;
+        let opacity = (100 - (blur)) / 100;
+        if (blur < 50){
+          el.style.filter = `blur(${Math.floor(blur)}px)`;
+        }
+        if (opacity > 0) {
+          if (opacity < .1) {
+              el.style.opacity = 0;
+          } else {
+              el.style.opacity = `${opacity}`;
+          }
         }
       }
+      if (document.querySelector('body').classList.contains('activeImgDtl')) {
+        hideGalleryView();
+      }
+    }
+  }
+
+  let galleryView = () => {
+    document.querySelector('.gallery').addEventListener('click', () => {
+      hideGalleryView();
+    });
+    for (var i = 0; i < galleryItem.length; i++) {
+      galleryItem[i].addEventListener('click', (e) => {
+        e.preventDefault();
+        const clone = e.target.cloneNode();
+        let imgSelect = e.target.currentSrc;
+        let topImg = `<div class='galleryOverlayImg' style='background-image: url(${imgSelect})'></div>`;
+        let detailEl = document.createElement('div');
+        detailEl.innerHTML = topImg;
+        galleryModule.append(detailEl);
+        galleryContainer.classList.add('on');
+        document.querySelector('body').classList.add('activeImgDtl');
+        galleryMode = 'on';
+
+      });
     }
   }
 
@@ -208,18 +243,21 @@ require('smoothscroll-polyfill').polyfill();
     homepageStuff();
     homeFeaturedSections(featuredSection);
     firstFeaturedSection(featuredSection);
-    blurOut(intro);
+    scrollThings(intro);
   };
 
   if (wrap.classList.contains('portfolio')){
     let mainContent = document.querySelector('.main-content');
-    blurOut(intro);
+    scrollThings(intro);
     portfolioNavOn(mainContent);
+    galleryView();
   }
 
   if (wrap.classList.contains('bio-page')){
     let mainContent = document.querySelector('.main-content');
     portfolioNavOn(mainContent);
+    galleryView();
+    scrollThings();
   }
 
 })()
